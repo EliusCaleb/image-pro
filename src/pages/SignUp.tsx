@@ -1,8 +1,27 @@
-
+import {  useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase/config";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+    const navigate =useNavigate()
+    const[email, setEmail ] = useState<string>('');
+    const [ password,setPassword] = useState<string>('')
+    const [error, setError] = useState<string>('')
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) =>{
+      e.preventDefault()
+
+      try{
+        createUserWithEmailAndPassword(auth, email,password)
+         navigate('/')
+      }catch(error) {
+        setError(error.message)
+      }
+    }
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
+      {error && error}
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col ">
           <div className="text-center ">
@@ -22,6 +41,8 @@ const SignUp = () => {
                 <input
                   type="text"
                   placeholder="email"
+                  onChange={(e)=>setEmail(e.target.value)}
+                  value={email}
                   className="input input-bordered"
                 />
               </div>
@@ -33,6 +54,8 @@ const SignUp = () => {
                   type="text"
                   placeholder="password"
                   className="input input-bordered"
+                  onChange={(e)=>setPassword(e.target.value)}
+                  value={password}
                 />
               </div>
               <div className="form-control mt-6">
