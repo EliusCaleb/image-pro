@@ -27,9 +27,7 @@ const SignUp = () => {
           <div className="text-center ">
             <h1 className="text-5xl font-bold">Image Pro</h1>
             <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
+              Provident cupiditate voluptatem et in.
             </p>
           </div>
           <div className="card sm:w-[30rem] shadow-2xl bg-base-100">
